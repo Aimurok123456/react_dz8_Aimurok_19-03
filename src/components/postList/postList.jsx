@@ -2,35 +2,54 @@ import styles from './postList.module.css'
 import Post from '../post/post'
 import API from '../../api'
 import { useState, useEffect } from 'react'
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
+
+
 
 const PostList = () => {
     const [posts, setPosts] = useState([])
+    const [filteredPosts, setFilteredPosts] = useState([])
     const [searchToken, setSearchToken] = useState('')
+    const [userId, setUserId] = useState(0)
 
-    const example = () => {
-        API.get(`/posts`)
-        .then(res => {
-            const data = res.data;
-            setPosts(data);       
-        })
-    }
 
-    const handleSearch = (e) => {
-        setSearchToken(e.target.value)
-    }
+    // [] - массив зависимости, dependencies list
+    useEffect(() => {
+        API.get(`posts`).then(resp => setPosts(resp.data))
+    }, [])
 
+  
+
+    useEffect(() => {
+        let postArray = posts;
+
+        setFilteredPosts(
+            postArray.filter(p => p.title.includes(searchToken) || p.userId===Number(searchToken ))
+        )
+    }, [searchToken, posts])
+
+
+
+
+
+  
+    
 
     return (
         <div className={styles.container}>
             <form className={styles.postForm}>
-                <input type="text" name="title" placeholder='Поиск по названию' onChange={handleSearch} value={searchToken}/>
-                <button>Поиск</button>
-            </form> 
+                <input type="text" className={styles.input} name="title" placeholder='Поиск по названию' onChange={(e) => setSearchToken(e.target.value)} value={searchToken} />
+                <button className={styles.btn}>Поиск</button>
+            </form>
 
-            <div className="posts">
-                {posts.map( p => 
-                    <Post key={p.id} post={p}/>
+            <div className={styles.posts}>
+                {filteredPosts.map(p =>
+                    // <Post key={p.id} post={p}/>
+                    <Link key={p.id} to={`/posts/${p.id}`}>
+                        <div className={styles.title}>{p.title} - {p.userId}</div>
+                    </Link>
                 )}
             </div>
         </div>

@@ -3,22 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: #EBC6FF ;
+ 
 }
 
-.container {
-  width: clamp(400px, 80%, 900px);
-  margin-inline: auto;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-button {
-  border: 1px solid rgb(116, 116, 116);
-}
-
-label {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-}

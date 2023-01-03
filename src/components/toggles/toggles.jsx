@@ -16,7 +16,6 @@ class Toggles extends React.Component {
     }
 
     render() {
-
         return (
             <div className={styles.container}>
                 <div>
@@ -34,6 +33,7 @@ class Toggles extends React.Component {
                             name="choose"
                             value="yes"
                             checked={this.state.selected === 'yes'}
+                            onChange={this.handleCheck}
                         />
                         <label htmlFor="yes">Yes</label>
 
@@ -43,6 +43,7 @@ class Toggles extends React.Component {
                             name="choose"
                             value="no"
                             checked={this.state.selected === 'no'}
+                            onChange={this.handleCheck}
                         />
                         <label htmlFor="no">No</label>
 
@@ -52,6 +53,7 @@ class Toggles extends React.Component {
                             name="choose"
                             value="maybe"
                             checked={this.state.selected === 'maybe'}
+                            onChange={this.handleCheck}
                         />
                         <label htmlFor="maybe">Maybe</label>
                     </div>

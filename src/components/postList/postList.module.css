@@ -1,18 +1,33 @@
 .container {
-    width: clamp(500px, 80%, 1000px);
+    width: clamp(600px, 80%, 1000px);
     margin-inline: auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    
 }
 
 .postForm {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    flex-wrap: no-wrap;
     gap: 10px;
-    height: 4em;
+    margin-bottom: 30px;
+   
 }
 
-.postForm input[type='text'] {
-    width: 100%;
+.input{
+    width: 400px;
+    height: 20px;
 }
 
+.title{
+   text-align: left;
+   margin-bottom: 13px;
+    
+}
+.info{
+    width: 500px;
+    text-align: justify;
+}
+.comments{
+    padding-bottom: 50px;
+}
